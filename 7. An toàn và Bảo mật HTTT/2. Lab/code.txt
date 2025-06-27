@@ -1,0 +1,1 @@
+cd ~/labtainer/trunk/scripts/labtainer-student

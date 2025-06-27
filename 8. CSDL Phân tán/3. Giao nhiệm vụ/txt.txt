@@ -1,0 +1,23 @@
+Phân tích: Các đối tượng sử dụng và phân quyền người dùng ,phân tích chức năng hệ thống 
+Phân tích CSDL: mô hình thực thể và mô hình quan hệ ,bảng tần suất truy nhập tại các vị trí
+Thiết kế hệ thống tại các trạm và toàn hệ thống. (Vẽ sơ đồ, và giải thích).
+
+Thiết kế CSDL chung của hệ thống (các quan hệ và mô hình quan hệ)
+
+
+Note lần 2:
++ Thiết kế kiến trúc hệ CSDLPT(ngang hang hay client/server)
+, vẽ sơ đồ kiến trúc
++ Thiết kế phân mảnh , các thông tin yêu cầu đối với các thiết kế phân mảnh(ngang,doc, dẫn xuất)
++ Thiết kế định vị(vẽ sơ đồ định vị, các thông in yêu cầu), đồng bộ hóa
++ Tạo truy vấn và tối ưu hóa truy vấn
+
+Thiết kế phân mảnh , các thông tin yêu cầu đối với các thiết kế phân mảnh(ngang,doc, dẫn xuất) - Thiết kết cùng với  Tô Quang Huy
+
+Tổng hợp thành file word( theo định dạng đã gửi)
+Tạo truy vấn và tối ưu hóa truy vấn(Theo dữ liệu tạo bảng ở Note)
+Thiết kế định vị(vẽ sơ đồ định vị, các thông in yêu cầu), đồng bộ hóa
+
+Thiết kế phân mảnh , các thông tin yêu cầu đối với các thiết kế phân mảnh(ngang,doc, dẫn xuất) thiết kế cùng Đào Ngọc Huy
+Thiết kế kiến trúc hệ CSDLPT(ngang hang hay client/server)
+, vẽ sơ đồ kiến trúc"

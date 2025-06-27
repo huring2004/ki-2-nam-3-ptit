@@ -1,0 +1,4 @@
++ Phân tán trên các máy trạm thông qua vpn
++ Chụp lại các ảnh phân tán
++ Nhân bản dữ liệu
++ Vào Web

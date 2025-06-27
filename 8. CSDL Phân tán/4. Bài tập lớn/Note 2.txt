@@ -1,0 +1,187 @@
+Mô hình ERD ban đầu với thuộc tính (sửa đổi)
+Các thực thể và thuộc tính
+Order (Đơn hàng)
+Thuộc tính:
+order_id: Mã đơn hàng.
+status: Trạng thái đơn hàng (Pending, In Transit, Delivered).
+created_at: Thời gian tạo đơn.
+delivery_date: Thời gian giao hàng dự kiến.
+region_code: Mã khu vực (NA, EU, ASIA, v.v.).
+total_weight: Tổng trọng lượng hàng hóa.
+Thuộc tính liên kết:
+customer_id: Mã khách hàng (liên kết với Customer).
+station_id: Mã trạm trung chuyển (liên kết với Station).
+customs_id: Mã quy định hải quan (liên kết với Customs).
+
+Customer (Khách hàng)
+Thuộc tính:
+customer_id: Mã khách hàng (thuộc tính chính của Customer).
+name: Tên khách hàng.
+phone_number: Số điện thoại.
+address: Địa chỉ.
+country_code: Mã quốc gia.
+tax_id: Mã số thuế.
+timezone: Múi giờ.
+
+Vehicle (Phương tiện vận chuyển)
+Thuộc tính:
+vehicle_id: Mã phương tiện.
+type: Loại phương tiện (Truck, Ship, Plane).
+capacity: Tải trọng tối đa.
+registration_country: Quốc gia đăng ký.
+Thuộc tính liên kết:
+provider_id: Mã nhà cung cấp (liên kết với Transport_Provider).
+station_id: Mã trạm trung chuyển (liên kết với Station).
+
+Driver (Tài xế)
+Thuộc tính:
+driver_id: Mã tài xế.
+name: Tên tài xế.
+nationality: Quốc tịch.
+international_license: Giấy phép lái xe quốc tế.
+visa_status: Tình trạng visa.
+Thuộc tính liên kết:
+vehicle_id: Mã phương tiện (liên kết với Vehicle).
+
+Route (Tuyến đường)
+Thuộc tính:
+route_id: Mã tuyến đường.
+distance: Khoảng cách.
+estimated_time: Thời gian dự kiến.
+transport_mode: Phương thức vận chuyển (Road, Sea, Air).
+Thuộc tính liên kết:
+station_from: Trạm khởi hành (liên kết với Station).
+station_to: Trạm đích (liên kết với Station).
+
+Station (Trạm trung chuyển)
+Thuộc tính:
+station_id: Mã trạm.
+station_name: Tên trạm.
+region_code: Mã khu vực.
+location: Vị trí địa lý.
+capacity: Dung lượng tối đa.
+Shipment_Details (Chi tiết vận chuyển)
+Thuộc tính:
+shipment_id: Mã lô hàng.
+departure_time: Thời gian khởi hành.
+arrival_time: Thời gian đến.
+Thuộc tính liên kết:
+order_id: Mã đơn hàng (liên kết với Order).
+vehicle_id: Mã phương tiện (liên kết với Vehicle).
+route_id: Mã tuyến đường (liên kết với Route).
+
+Invoice (Hóa đơn)
+Thuộc tính:
+invoice_id: Mã hóa đơn.
+total_amount: Tổng chi phí.
+customs_fee: Phí hải quan.
+tax_amount: Thuế quốc tế.
+Thuộc tính liên kết:
+order_id: Mã đơn hàng (liên kết với Order).
+currency_id: Mã tiền tệ (liên kết với Currency_Exchange).
+Transport_Provider (Nhà cung cấp dịch vụ vận tải)
+Thuộc tính:
+provider_id: Mã nhà cung cấp.
+provider_name: Tên công ty.
+contact_info: Thông tin liên lạc.
+Thuộc tính liên kết:
+country_code: Mã quốc gia (liên kết với Customs).
+
+Warehouse (Kho bãi)
+Thuộc tính:
+warehouse_id: Mã kho.
+location: Vị trí kho.
+capacity: Dung lượng kho.
+status: Trạng thái kho (Active, Full).
+Thuộc tính liên kết:
+station_id: Mã trạm trung chuyển (liên kết với Station).
+Shipping_Fee (Phí vận chuyển)
+Thuộc tính:
+fee_id: Mã phí.
+base_fee: Phí cơ bản.
+tax_rate: Tỷ lệ thuế.
+total_fee: Tổng phí.
+Thuộc tính liên kết:
+route_id: Mã tuyến đường (liên kết với Route).
+currency_id: Mã tiền tệ (liên kết với Currency_Exchange).
+Customs (Hải quan)
+Thuộc tính:
+customs_id: Mã quy định hải quan.
+country_code: Mã quốc gia.
+regulation_details: Chi tiết quy định.
+processing_time: Thời gian xử lý.
+
+Currency_Exchange (Tỷ giá tiền tệ)
+Thuộc tính:
+currency_id: Mã tiền tệ.
+currency_code: Mã chuẩn tiền tệ (USD, VND, v.v.).
+exchange_rate: Tỷ giá.
+last_updated: Thời gian cập nhật.
+Mối quan hệ giữa các thực thể
++) Order - Customer:
+Mối quan hệ: 1:N (Một khách hàng đặt nhiều đơn hàng).
+Thuộc tính liên kết: customer_id trong Order tham chiếu đến Customer.
+
++) Order - Station:
+Mối quan hệ: 1:N (Một trạm xử lý nhiều đơn hàng).
+Thuộc tính liên kết: station_id trong Order tham chiếu đến Station.
+
++) Order - Customs:
+Mối quan hệ: 1:N (Một quy định hải quan áp dụng cho nhiều đơn hàng).
+Thuộc tính liên kết: customs_id trong Order tham chiếu đến Customs.
+
++)Order - Shipment_Details:
+Mối quan hệ: 1:N (Một đơn hàng có nhiều chi tiết vận chuyển).
+Thuộc tính liên kết: order_id trong Shipment_Details tham chiếu đến Order.
+Giải thích: Shipment_Details không phải là "lô hàng độc lập" mà là các bản ghi chi tiết về quá trình vận chuyển của đơn hàng (ví dụ: các giai đoạn vận chuyển, phương tiện, tuyến đường được sử dụng). Một đơn hàng có thể được chia thành nhiều bước vận chuyển khác nhau, mỗi bước được ghi lại trong Shipment_Details.
+
++) Shipment_Details - Vehicle:
+Mối quan hệ: N:1 (Nhiều chi tiết vận chuyển dùng một phương tiện).
+Thuộc tính liên kết: vehicle_id trong Shipment_Details tham chiếu đến Vehicle.
+der_id trong Vehicle tham 
+
++)Shipment_Details - Route:
+Mối quan hệ: N:1 (Nhiều chi tiết vận chuyển đi theo một tuyến).
+Thuộc tính liên kết: route_id trong Shipment_Details tham chiếu đến Route.
+
++) Vehicle - Driver:
+Mối quan hệ: 1:N (Một phương tiện có nhiều tài xế theo thời gian).
+Thuộc tính liên kết: vehicle_id trong Driver tham chiếu đến Vehicle.
+
++) Vehicle - Transport_Provider:
+Mối quan hệ: N:1 (Nhiều phương tiện thuộc một nhà cung cấp).
+Thuộc tính liên kết: provichiếu đến Transport_Provider.
+
++) Vehicle - Station:
+Mối quan hệ: N:1 (Nhiều phương tiện tại một trạm).
+Thuộc tính liên kết: station_id trong Vehicle tham chiếu đến Station.
+
++) Route - Station:
+Mối quan hệ: N:1 (Nhiều tuyến bắt đầu/kết thúc tại một trạm).
+Thuộc tính liên kết: station_from và station_to trong Route tham chiếu đến Station.
+Order - Invoice:
+Mối quan hệ: 1:1 (Một đơn hàng có một hóa đơn).
+Thuộc tính liên kết: order_id trong Invoice tham chiếu đến Order.
+
++)Invoice - Currency_Exchange:
+Mối quan hệ: N:1 (Nhiều hóa đơn dùng một loại tiền tệ).
+Thuộc tính liên kết: currency_id trong Invoice tham chiếu đến Currency_Exchange.
+Warehouse - Station:
+Mối quan hệ: N:1 (Nhiều kho thuộc một trạm).
+Thuộc tính liên kết: station_id trong Warehouse tham chiếu đến Station.
+
++)Shipping_Fee - Route:
+Mối quan hệ: N:1 (Nhiều mức phí cho một tuyến).
+Thuộc tính liên kết: route_id trong Shipping_Fee tham chiếu đến Route.
+
++)Shipping_Fee - Currency_Exchange:
+Mối quan hệ: N:1 (Nhiều mức phí dùng một loại tiền tệ).
+Thuộc tính liên kết: currency_id trong Shipping_Fee tham chiếu đến Currency_Exchange.
+
++)Transport_Provider - Customs:
+Mối quan hệ: N:1 (Nhiều nhà cung cấp trong một quốc gia).
+Thuộc tính liên kết: country_code trong Transport_Provider tham chiếu đến Customs.
+
++)Customer - Customs:
+Mối quan hệ: N:1 (Nhiều khách hàng trong một quốc gia).
+Thuộc tính liên kết: country_code trong Customer tham chiếu đến Customs.
